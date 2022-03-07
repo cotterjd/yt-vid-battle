@@ -8,6 +8,8 @@ import (
   "io/ioutil"
   "encoding/json"
   "strconv"
+
+  "github.com/joho/godotenv"
 )
 
 var ytURL string = "https://youtube.googleapis.com/youtube/v3"
@@ -37,6 +39,9 @@ type StatsResponse struct{
   Items []StatItem `json:"items"`
 }
 func main () {
+  if err := godotenv.Load(".env"); err != nil {
+    print(err)
+  }
   if len(os.Args) < 3 {
     fmt.Println("Missing arguments. Please pass in the names of two YouTube videos you want to do battle")
     return
@@ -95,7 +100,7 @@ func getTotal (stats StatsObj) int {
 }
 
 func getIdByName(searchTerm string) string {
-  urlStr := ytURL + "/search?part=id&maxResults=1&q=" + url.QueryEscape(searchTerm) + "&key=AIzaSyCivFO1PWBQahwRh9-BGm16iNz0CcvGqRg"
+  urlStr := ytURL + "/search?part=id&maxResults=1&q=" + url.QueryEscape(searchTerm) + "&key=" + os.Getenv("API_KEY")
   response, getErr := http.Get(urlStr)
   if getErr != nil {
     print(getErr)
