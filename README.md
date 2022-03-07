@@ -7,5 +7,6 @@ $ ./main.linux "chocolate rain" "david after dentist"
 ```
 or 
 ```
+$ go mod tidy
 $ go run main.go "chocolate rain" "david after dentist"
 ```
