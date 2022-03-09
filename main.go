@@ -74,19 +74,20 @@ func getAndShowStats(vidName string) int {
   videoID := getIdByName(vidName)
   var videoInfo StatItem = getStats(videoID)
   var videoTotal int = getTotal(videoInfo)
-  var videoScore int = getScore(videoTotal, videoInfo)
-  displayStats(vidName, videoTotal, videoScore, videoInfo)
+  videoScore, yearsPublished := getScore(videoTotal, videoInfo)
+  displayStats(vidName, videoTotal, videoScore, yearsPublished, videoInfo)
 
   return videoScore
 }
 
-func displayStats (name string, total int, score int, info StatItem) {
+func displayStats (name string, total int, score int, yearsPublished int64, info StatItem) {
   fmt.Println(name)
   views, _ := strconv.Atoi(info.Statistics.ViewCount)
   fmt.Println("Views:", formatNum(views))
   likes, _ := strconv.Atoi(info.Statistics.LikeCount)
   fmt.Println("Likes:", formatNum(likes))
   fmt.Println("Total:", formatNum(total))
+  fmt.Println("Years Published:", yearsPublished)
   fmt.Println("Normalized Score:", formatNum(score))
   fmt.Println("")
 }
@@ -103,15 +104,15 @@ func getTotal (item StatItem) int {
   return views + likes + favs
 }
 
-func getScore (total int, item StatItem) int {
+func getScore (total int, item StatItem) (int, int64) {
   now := time.Now()
   nowStamp := now.Unix()
   // normalize for amount of time published
   divider := getYearsOld(nowStamp, item.Snippet.PublishedAt)
   if divider == 0 {
-    return total
+    return total, divider
   } else {
-    return int(int64(total) / divider)
+    return int(int64(total) / divider), divider
   }
 }
 
