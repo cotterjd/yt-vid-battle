@@ -3,7 +3,7 @@ Uses google's youtube api to compares youtube videos based on views/likes
 
 Pass in two strings of names of videos
 ```
-$ ./main.linux "chocolate rain" "david after dentist"
+$ ./main "chocolate rain" "david after dentist"
 ```
 or 
 ```
