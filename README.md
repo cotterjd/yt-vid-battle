@@ -1,5 +1,5 @@
 # yt-vid-battle
-Uses google's youtube api to compares youtube videos based on views/likes
+Uses google's youtube api to compares youtube videos based on views/likes/years published
 
 Pass in two strings of names of videos
 ```
