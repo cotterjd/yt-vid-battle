@@ -7,7 +7,7 @@ $ ./main "chocolate rain" "david after dentist"
 ```
 or 
 ```
-$ vim .env # will need API_KEY
+$ vim .env # will need API_KEY (generated at console.cloud.google.com)
 $ go mod tidy
 $ go run main.go "chocolate rain" "david after dentist"
 ```
