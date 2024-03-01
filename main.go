@@ -59,10 +59,10 @@ func main () {
   vid2Score := getAndShowStats(vid2Name)
 
   if vid1Score > vid2Score {
-    fmt.Println(vid1Name, " Wins!")
+    fmt.Println(vid1Name, "Wins!")
   }
   if vid1Score < vid2Score {
-    fmt.Println(vid2Name, " Wins!")
+    fmt.Println(vid2Name, "Wins!")
   }
   if vid1Score == vid2Score {
     fmt.Println("Tie!")
